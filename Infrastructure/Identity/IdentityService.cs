@@ -43,10 +43,10 @@ public class IdentityService(
         return result.Succeeded;
     }
 
-    public async Task<(Result Result, string UserId)> CreateDoctorUserAsync(string userName, string email,
+    public async Task<(Result Result, string UserId)> CreateDoctorUserAsync(string email,
         string password)
     {
-        var user = new ApplicationUser { UserName = userName, Email = email };
+        var user = new ApplicationUser { UserName = email, Email = email };
 
         var result = await userManager.CreateAsync(user, password);
 
@@ -56,12 +56,12 @@ public class IdentityService(
         return (result.ToApplicationResult(), user.Id);
     }
 
-    public async Task<(Result Result, string UserId)> CreatePatientUserAsync(string userName, string email,
+    public async Task<(Result Result, string UserId)> CreatePatientUserAsync(string email,
         string password)
     {
         var user = new ApplicationUser
         {
-            UserName = userName, Email = email
+            UserName = email, Email = email
         };
 
         var result = await userManager.CreateAsync(user, password);

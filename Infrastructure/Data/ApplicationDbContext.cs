@@ -4,6 +4,7 @@ using Domain.Entities;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Infrastructure.Data;
 
@@ -13,6 +14,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Doctor> Doctors => Set<Doctor>();
 
     public DbSet<Patient> Patients => Set<Patient>();
+    public DbSet<AvailableTime> AvailableTimes => Set<AvailableTime>();
+    public DbSet<Scheduling> Scheduling => Set<Scheduling>();
+
+    DatabaseFacade IApplicationDbContext.Database => Database;
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

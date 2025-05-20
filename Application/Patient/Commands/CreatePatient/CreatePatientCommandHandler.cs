@@ -9,7 +9,7 @@ public class CreatePatientCommandHandler(IApplicationDbContext context, IIdentit
     public async Task<int> Handle(CreatePatientCommand request, CancellationToken cancellationToken)
     {
         var result =
-            await identityService.CreatePatientUserAsync(request.UserName, request.Email, request.Password);
+            await identityService.CreatePatientUserAsync(request.Email, request.Password);
 
         var entity = new Domain.Entities.Patient()
             { Name = request.Name, Weight = request.Weight, ApplicationUserId = result.UserId };

@@ -10,10 +10,10 @@ public interface IIdentityService
 
     Task<bool> AuthorizeAsync(string userId, string policyName);
 
-    Task<(Result Result, string UserId)> CreateDoctorUserAsync(string userName, string email,
+    Task<(Result Result, string UserId)> CreateDoctorUserAsync(string email,
         string password);
 
-    Task<(Result Result, string UserId)> CreatePatientUserAsync(string userName, string email,
+    Task<(Result Result, string UserId)> CreatePatientUserAsync(string email,
         string password);
 
     Task<Result> DeleteUserAsync(string userId);

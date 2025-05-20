@@ -10,7 +10,7 @@ public class CreateDoctorCommandHandler(IApplicationDbContext context, IIdentity
     public async Task<int> Handle(CreateDoctorCommand request, CancellationToken cancellationToken)
     {
         var result =
-            await identityService.CreateDoctorUserAsync(request.UserName, request.Email, request.Password);
+            await identityService.CreateDoctorUserAsync(request.Email, request.Password);
 
         var entity = new Domain.Entities.Doctor
             { Name = request.Name, Crm = request.Crm, ApplicationUserId = result.UserId };
