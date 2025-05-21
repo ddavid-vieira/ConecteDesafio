@@ -40,7 +40,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Hour")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTimeOffset>("LastModified")
                         .HasColumnType("timestamp with time zone");
@@ -50,7 +50,8 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoctorId");
+                    b.HasIndex("DoctorId", "Hour")
+                        .IsUnique();
 
                     b.ToTable("AvailableTimes");
                 });
@@ -163,7 +164,8 @@ namespace Infrastructure.Data.Migrations
                     b.HasIndex("AvailableTimeId")
                         .IsUnique();
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("PatientId", "AvailableTimeId")
+                        .IsUnique();
 
                     b.ToTable("Scheduling");
                 });

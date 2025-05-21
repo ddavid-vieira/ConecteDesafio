@@ -10,5 +10,7 @@ public class AvailableTimeConfiguration : IEntityTypeConfiguration<AvailableTime
     {
         builder.HasIndex(h => new { h.DoctorId, h.Hour })
             .IsUnique();
+        builder.Property(x => x.Hour)
+            .HasColumnType("timestamp without time zone");
     }
 }

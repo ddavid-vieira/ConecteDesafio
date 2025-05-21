@@ -1,5 +1,6 @@
 using Application.Common.Interfaces;
 using Application.Common.Models;
+using Domain.Constants;
 using Domain.Entities;
 using Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
@@ -51,7 +52,7 @@ public class IdentityService(
         var result = await userManager.CreateAsync(user, password);
 
         if (result.Succeeded)
-            await userManager.AddToRoleAsync(user, UserType.Doctor.ToString());
+            await userManager.AddToRoleAsync(user, Roles.Doctor);
 
         return (result.ToApplicationResult(), user.Id);
     }
@@ -67,7 +68,7 @@ public class IdentityService(
         var result = await userManager.CreateAsync(user, password);
 
         if (result.Succeeded)
-            await userManager.AddToRoleAsync(user, UserType.Patient.ToString());
+            await userManager.AddToRoleAsync(user, Roles.Patient);
 
         return (result.ToApplicationResult(), user.Id);
     }

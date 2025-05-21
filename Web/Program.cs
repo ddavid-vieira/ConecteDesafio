@@ -37,5 +37,8 @@ app.UseExceptionHandler(options => { });
 
 app.MapControllers();
 
-app.MapIdentityApi<ApplicationUser>();
+app.MapGroup("/api/authentication")
+    .WithGroupName("Authentication")
+    .MapIdentityApi<ApplicationUser>();
+
 app.Run();
